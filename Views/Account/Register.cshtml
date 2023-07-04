@@ -1,0 +1,109 @@
+﻿@using ShoeShop.Dto
+@model RegisterDto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="wrapper">
+    <div class="breadcrumb-area mt-30">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="d-flex align-items-center">
+                    <li><a href="Home">Trang chủ</a></li>
+                    <li class="active"><a href="Register">Đăng kí</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Register Account Start -->
+    <div class="register-account ptb-100 ptb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="register-title">
+                        <h3 class="mb-10">ĐĂNG KÍ TÀI KHOẢN</h3>
+                        <p class="mb-10">Nếu bạn chưa có tài khoản, vui lòng đăng kí tại đây.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Row End -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-register" asp-action="Register" asp-controller="Account" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        @if (TempData["Error"] != null)
+                        {
+                            <span class="text-danger">@TempData["Error"]</span>
+                        }
+                        <fieldset>
+                            <legend>Thông tin cá nhân</legend>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" ><span class="require">*</span>Họ và tên: </label>
+                                <div class="col-md-10">
+                                    <input asp-for="Fullname" type="text" class="form-control" required placeholder="Vui lòng nhập họ và tên">
+                                <span asp-validation-for="Fullname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" ><span class="require">*</span>SĐT: </label>
+                                <div class="col-md-10">
+                                    <input type="number" asp-for="PhoneNumber" class="form-control" required  placeholder="vui lòng nhập SDT">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="email"><span class="require">*</span>Email</label>
+                                <div class="col-md-10">
+                                    <input type="email" asp-for="Email" class="form-control"  placeholder="Nhập địa chỉ email...">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="avatar"><span class="require">*</span>Ảnh đại diện</label>
+                                <div class="col-md-10">
+                                    <input type="file" asp-for="avatar" required class="form-control" placeholder="Chọn hình ảnh">
+                                    <span asp-validation-for="avatar"  class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Cài đặt mật khẩu</legend>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Mật khẩu:</label>
+                                <div class="col-md-10">
+                                    <input type="password" required class="form-control" asp-for=Password placeholder="Mật khẩu">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Xác nhận mật khẩu</label>
+                                <div class="col-md-10">
+                                    <input type="password" required asp-for=ConfirmPassword class="form-control" id="pwd-confirm" placeholder="Nhập lại mật khẩu...">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="terms">
+                            <div class="float-md-right">
+                                <span>Tôi đã đọc và đồng ý <a href="#" class="agree"><b>chính sách bảo mật của cửa hàng</b></a></span>
+                                <input type="checkbox" name="agree" required value="1"> &nbsp;
+                                <input type="submit" value="Tiếp tục" class="return-customer-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+</div>

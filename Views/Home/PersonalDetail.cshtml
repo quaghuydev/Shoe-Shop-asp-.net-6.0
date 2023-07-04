@@ -1,0 +1,187 @@
+﻿@using System.Globalization;
+@model IEnumerable<Order>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var user = ViewBag.User as User;
+    var details = ViewBag.DetailsOrder as List<OrderDetail>;
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+}
+<div class="wrapper">
+    <!-- Categorie Menu & Slider Area End Here -->
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-area mt-30">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="d-flex align-items-center">
+                    <li><a href="Home">Trang chủ</a></li>
+                    <li class="active"><a asp-action="PersonalDetail" asp-controller="Home">Trang cá nhân</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- About Us Start Here -->
+    <div class="about-us pt-100 pt-sm-60">
+        <div class="container">
+                        <h3>Thông tin cá nhân</h3>
+                        <br />
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="checkbox-form mb-sm-40">
+                        <div class="row">
+                            <div class="col order-first">
+                                <div class="col-md-12">
+                                    <img style="width:115%" src="@user.AvatarUrl" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <p><span class="title-s"><strong>Mã cá nhân:</strong> </span> <span>@user.Id</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <p><span class="title-s"><strong>Username:</strong> </span> <span>@user.UserName</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <p><span class="title-s"><strong>SĐT:</strong> </span> <span>@user.PhoneNumber</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <p><span class="title-s"><strong>Email:</strong> </span> <span>@user.Email</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <p><span class="title-s"><strong>Ngày đăng ký:</strong> </span> <span>@user.CreateDate</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="your-order">
+                        <h3>Đơn hàng chưa được giao</h3>
+                        <div class="your-order-table table-content table-responsive mb-45">
+                            @if (Model.Count() == 0)
+                            {
+                            <h5>Bạn chưa mua sản phẩm nào trong cửa hàng</h5>
+                                
+                            }else{
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">Mã đơn hàng</th>
+                                            <th class="product-total">Tên Sản Phẩm</th>
+                                            <th class="product-name">Tổng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach(var o in Model)
+                                    {
+                                        if (o.OrderStatus != ShoeShop.Models.Enums.OrderStatus.Processing)
+                                        {
+                                            <tr class="cart_item">
+                                                <td class="product-id">
+                                                    @o.Id
+                                                </td>
+                                                <td class="product-name">
+                                                    @o.PrintOrderDetail();
+                                                </td>
+                                                
+                                                <td class="product-total">
+                                                    <span class="amount">
+                                                       @o.TotalPrice.ToString("C",culture)
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                        
+                                    }
+                                    </tbody>
+                                   
+                                   
+                                </table>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- About Us End Here -->
+    <!-- About Us Team Start Here -->
+
+    <!-- About Us Team End Here -->
+    <!-- About Us Skills Start Here -->
+    <div class="about-team pt-100 pt-sm-60">
+        <div class="container">
+            <h3 class="mb-30 about-title">Lịch sử mua hàng</h3>
+            <div class="table-content table-responsive mb-45">
+                 @if (details.Count() == 0)
+                            {
+                            <h5>Bạn chưa mua sản phẩm nào trong cửa hàng</h5>
+                                
+                            }else{
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="product-name">Tên ản phẩm</th>
+                                <th class="product-price">Đơn giá</th>
+                                <th class="product-quantity">Số lượng</th>
+                                <th class="product-subtotal">Tổng</th>
+                                <th class="product-remove">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach(var p in details){
+
+                            
+
+                                <tr>
+
+                                    <td class="product-name">
+                                        <a target="_blank"
+                                           asp-controller="Product" asp-action="Detail" asp-route-id="@p.Product.Id">@p.Product.Title</a>
+                                    </td>
+                                    <td class="product-price">
+                                        <span class="amount">
+                                            @p.Product.Price.ToString("C",culture)
+                                        </span>
+                                    </td>
+                                    <td class="product-quantity">
+                                        @p.Quantity
+                                    </td>
+                                    <td class="product-quantity">
+                                       @((p.Product.Price*p.Quantity).ToString("C",culture))
+                                    </td>
+                                    <td class="product-remove">
+                                        <a href="${deleteHistory}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                </table>
+                }
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+</div>

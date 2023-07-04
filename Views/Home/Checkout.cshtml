@@ -1,0 +1,154 @@
+﻿@using ShoeShop.Models.ViewModel
+@model CheckoutViewModel
+@using System.Globalization;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var cart = ViewBag.Cart as Cart;   
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+}
+<div class="wrapper">
+    <!-- Categorie Menu & Slider Area End Here -->
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-area mt-30">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="d-flex align-items-center">
+                    <li><a href="Home">Trang chủ</a></li>
+                    <li class="active"><a href="Payment">Thanh toán</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- coupon-area start -->
+    <!-- coupon-area end -->
+    <!-- checkout-area start -->
+    <div class="checkout-area pb-100 pt-15 pb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="checkbox-form mb-sm-40">
+                        <h3>Chi tiết thanh toán</h3>
+                        <form asp-controller="Home" asp-action="Checkout" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Họ và tên: <span class="required">*</span></label>
+                                        <input type="text" asp-for="Fullname"
+                                               placeholder="Vui lòng nhập họ tên..">
+                                    </div>
+                                    <span asp-validation-for="Fullname" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Số nhà: <span class="required">*</span></label>
+                                        <input type="text" asp-for="NumberHouse"
+                                               placeholder="Vui lòng nhập số nhà..">
+                                    </div>
+                                    <span asp-validation-for="NumberHouse" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Tên đường: <span class="required">*</span></label>
+                                        <input type="text" asp-for="Street"
+                                               placeholder="Vui lòng nhập tên đường..">
+                                    </div>
+                                    <span asp-validation-for="Street" class="text-danger"></span>
+                                </div><div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Phường/ xã: <span class="required">*</span></label>
+                                        <input type="text" asp-for="Wards"
+                                               placeholder="Vui lòng nhập xã hoặc phường..">
+                                    </div>
+                                    <span asp-validation-for="Wards" class="text-danger"></span>
+                                </div><div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Huyện/ Thị trấn: <span class="required">*</span></label>
+                                        <input type="text" asp-for="District"
+                                               placeholder="Vui lòng nhập huyện hoặc thị trấn..">
+                                    </div>
+                                    <span asp-validation-for="District" class="text-danger"></span>
+                                </div><div class="col-md-12">
+                                    <div class="checkout-form-list mb-30">
+                                        <label>Tỉnh/ Thành phố<span class="required">*</span></label>
+                                        <input type="text" asp-for="Province"
+                                               placeholder="Vui lòng nhập tỉnh hoặc thành phố..">
+                                    </div>
+                                    <span asp-validation-for="Province" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 20px">
+                                <div class="checkout-form-list mb-30">
+                                    <input type="submit" style="font-size: 20px;
+    height: 40px;
+    width: 103px;
+    background: orange;
+    border-radius: 5px;
+    border: none;
+    color: whitesmoke;" value="Đặt hàng">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="your-order">
+                        <h3>Đơn đặt hàng của bạn</h3>
+                        @if (cart.Items.Count != 0)
+                        {
+                        <div class="your-order-table table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-total">Tổng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        @foreach(var i in cart.Items)
+                                        {
+                                                     <tr class="cart_item">
+                                                        <td class="product-name">
+                                                            @i.Product.Title<span class="product-quantity">   SL: @i.Quantity</span>
+                                                        </td>
+                                                        <td class="product-total">
+                                                            <span class="amount">
+                                                        @i.SubTotal.ToString("C", culture)
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                        }
+                                       
+
+                                    </tbody>
+                                    <tfoot>
+                                       
+                                        <tr class="order-total">
+                                            <th>Tổng đơn đặt hàng</th>
+                                            <td>
+                                                <span class=" total amount">
+                                                    @cart.TotalPrice().ToString("C", culture)
+
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                        </div>
+                            
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

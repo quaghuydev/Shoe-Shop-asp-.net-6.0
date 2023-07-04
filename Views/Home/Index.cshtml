@@ -1,0 +1,145 @@
+﻿@using System.Globalization;
+@{
+    ViewData["Title"] = "Trang chủ";
+    var HintProducts = ViewBag.HintProducts as IEnumerable<Product>;
+    var DealProducts = ViewBag.DealProducts as IEnumerable<Product>;
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+}
+
+
+
+
+<!-- Hot Deal Products Start Here -->
+<div class="hot-deal-products off-white-bg pb-90 pb-sm-50">
+    <div class="container">
+        <!-- Product Title Start -->
+        <div class="post-title pb-30">
+            <h2>hot deals</h2>
+        </div>
+        <!-- Hot Deal Product Activation Start -->
+        <div class="hot-deal-active owl-carousel">
+            @foreach(var p in DealProducts)
+            {
+            <div class="single-product">
+                <!-- Product Image Start -->
+                <div class="pro-img">
+                    <a href="product.html">
+                        <img class="primary-img" src="@p.Image.First"
+                             alt="single-product">
+                            <img class="secondary-img" src="@p.Image.Second"
+                             alt="single-product">
+                    </a>
+                    <div class="countdown" data-countdown="2020/03/01"></div>
+                    
+                </div>
+                <!-- Product Content Start -->
+                <div class="pro-content">
+                    <div class="pro-info">
+                        <h4><a asp-action="Detail" asp-controller="Product" asp-route-id="@p.Id">@p.Title</a></h4>
+                            <p>
+                                <span class="price">
+                                    @((p.Price - (p.Price * (p.Sale / 100.0))).ToString("C", culture))
+                                </span>
+
+                                @if (p.Sale > 0)
+                                {
+                                    <del class="prev-price">
+                                        @p.Price.ToString("C", culture)
+                                    </del>
+                                }
+                            </p>
+                            @if (p.Sale > 0)
+                            {
+                                <div class="label-product l_sale">
+                                    @p.Sale<span class="symbol-percent">%</span>
+                                </div>
+                            }
+                    </div>
+                    <div class="pro-actions">
+                        <div class="actions-primary">
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@p.Id" title="Thêm vào giỏ">
+                                    + Thêm
+                                    vào
+                                    giỏ
+                                </a>
+                        </div>
+                            <div class="actions-primary">
+                                <a asp-controller="Cart" asp-action="BuyNow" asp-route-id="@p.Id" title="Mua ngay">
+                                    Mua
+                                    ngay
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+                
+            }
+            <!-- Single Product Start -->
+            <!-- Single Product Start -->
+            
+        </div>
+
+    </div>
+</div>
+
+<!-- Big Banner Start Here -->
+<div class="big-banner mt-100 pb-85 mt-sm-60 pb-sm-45">
+    <div class="container banner-2">
+        <div class="banner-box">
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-1.jpg" alt="banner 3"></a>
+            </div>
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-2.jpg" alt="banner 3"></a>
+            </div>
+        </div>
+        <div class="banner-box">
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-3.jpg" alt="banner 3"></a>
+            </div>
+        </div>
+        <div class="banner-box">
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-4.jpg" alt="banner 3"></a>
+            </div>
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-5.jpg" alt="banner 3"></a>
+            </div>
+        </div>
+        <div class="banner-box">
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-6.jpg" alt="banner 3"></a>
+            </div>
+        </div>
+        <div class="banner-box">
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-7.jpg" alt="banner 3"></a>
+            </div>
+            <div class="col-img">
+                <a href="#"><img src="img\banner\banner3-8.jpg" alt="banner 3"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Arrivals Products Area Start Here -->
+<div class="arrivals-product pb-85 pb-sm-45">
+    <div class="container">
+        <div class="main-product-tab-area">
+            <div class="tab-menu mb-25">
+                <div class="section-ttitle">
+                    <h2>New Arrivals</h2>
+                </div>
+                <!-- Nav tabs -->
+                
+
+            </div>
+
+            <!-- Tab Contetn Start -->
+            
+        </div>
+        <!-- main-product-tab-area-->
+    </div>
+</div>

@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Contact>
+@using ShoeShop.Models.Enum
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<table class="table table-striped table-bordered table-hover" style="width:100%">
+    <thead>
+        <tr>
+            <th width="20%">Email</th>
+            <th width="10%">Chủ đề</th>
+            <th>nội dung</th>
+            <th>Ngày tạo</th>
+            <th width="10%">Trạng thái</th>
+            <th width="10%"></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr id="@i.Id">
+                <td>@i.Email</td>
+                <td>@i.Subject</td>
+                <td class="text-center">@i.Content</td>
+                <td class="text-center">@i.CreateDate</td>
+
+                <td class="text-center">
+                    
+                        @((i.Status == ShoeShop.Models.Enums.ContactStatus.Processed) ? "Đã phản hồi" : "Chưa phản hồi")
+                </td>
+                <td class="text-center"><a style="color:white;font-weight:500" href="/Admin/Home/Feedback/@i.Id" class="btn btn-primary">Phản hồi</a></td>
+                <td class="text-center">
+                    <a href="@i.Id" style="color:white;font-weight:500" data-bs-toggle="modal" data-bs-target="#dialog" data-id="@i.Id" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <th width="20%">Email</th>
+            <th width="10%">Chủ đề</th>
+            <th>nội dung</th>
+            <th>Ngày tạo</th>
+            <th width="10%">Trạng thái</th>
+            <th width="10%"></th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="modal fade" id="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa phản hồi khách hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chăn muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnDelete" class="btn btn-primary">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-bs-target="#dialog"]').click(function () {
+            var id = $(this).data('id');
+            $('#btnDelete').data('id', id);
+        });
+
+        $('#btnDelete').click(function () {
+            var id = $(this).data('id');
+            // Thực hiện ajax với id đã lấy được
+            $.ajax({
+                type: "GET",
+                url: '/Admin/Home/DeleteContact/' + id,
+                success: function () {
+                    $("#" + id).remove();
+                    $('#dialog').modal('hide');
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            responsive: true,
+            paging: true,
+            lengthChange: true,
+            ordering: true,
+            info: true,
+            autoWidth: true,
+
+            language: {
+                processing: "Đang xử lý...",
+                search: "Tìm kiếm:",
+                lengthMenu: "Hiển thị _MENU_ hàng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                infoEmpty: "Hiển thị 0 đến 0 của 0 mục",
+                infoFiltered: "(được lọc từ _MAX_ mục)",
+                infoPostFix: "",
+                loadingRecords: "Đang tải...",
+                zeroRecords: "Không tìm thấy dữ liệu",
+                emptyTable: "Không có dữ liệu trong bảng",
+                paginate: {
+                    first: "Đầu",
+                    previous: "Trước",
+                    next: "Tiếp",
+                    last: "Cuối"
+                },
+                aria: {
+                    sortAscending: ": Kích hoạt để sắp xếp cột tăng dần",
+                    sortDescending: ": Kích hoạt để sắp xếp cột giảm dần"
+                }
+                
+            }
+        });
+    });
+   
+</script>

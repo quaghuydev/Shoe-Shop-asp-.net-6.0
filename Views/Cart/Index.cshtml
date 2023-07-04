@@ -1,0 +1,119 @@
+﻿@model Cart
+@using System.Globalization;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+}
+<div class="breadcrumb-area mt-30">
+    <div class="container">
+        <div class="breadcrumb">
+            <ul class="d-flex align-items-center">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="active"><a href="cart.html">Giỏ hàng</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Container End -->
+</div>
+<!-- Breadcrumb End -->
+<!-- Cart Main Area Start -->
+<div class="cart-main-area ptb-100 ptb-sm-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <!-- Form Start -->
+                <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+                    <!-- Table Content Start -->
+                    <div class="table-content table-responsive mb-45">
+                        @if (Model.Items.Count()<1)
+                        {
+                            <p>Giỏ hàng trống</p>
+                        }
+                        @if (Model.Items.Count()>0){
+                            <table>
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Hình ảnh</th>
+                                    <th class="product-name">Tên sản phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-subtotal">Tổng giá</th>
+                                    <th class="product-remove">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                               @for (int i = 0; i < Model.Items.Count; i++)
+                                  {
+                                     <input name="list[@i].Product.Id" type="hidden" value="@Model.Items[i].Product.Id" />
+                                   <tr>
+                                        <td class="product-thumbnail">
+                                                <a href="#"><img src="@Model.Items[i].Product.Image.First" alt="cart-image"></a>
+                                        </td>
+                                        <td class="product-name"><a href="#">@Model.Items[i].Product.Title</a></td>
+                                            <td class="product-price"><span class="amount">@Model.Items[i].Product.Price.ToString("C", culture)</span></td>
+                                        <td class="product-quantity"><input name="list[@i].Quantity" type="number" value="@Model.Items[i].Quantity"></td>
+                                            <td class="product-subtotal">@Model.Items[i].SubTotal.ToString("C", culture)</td>
+                                        <td class="product-remove">
+                                           <a asp-controller="Cart" asp-action="DeleteItem" asp-route-id="@Model.Items[i].Product.Id">X
+                                            </a>
+                                        </td>
+                                   </tr>
+                                    }
+                                
+                            </tbody>
+                        </table>
+                        }
+                    </div>
+                    <!-- Table Content Start -->
+                    <div class="row">
+                        <!-- Cart Button Start -->
+                        <div class="col-md-8 col-sm-12">
+                            <div class="buttons-cart">
+                                @if(Model.Items.Count >0)
+                                {
+                                <input type="submit" value="Cập nhật nhỏ hàng">
+                                }
+                                <a href="/Cart">Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+                        <!-- Cart Button Start -->
+                        <!-- Cart Totals Start -->
+                        <div class="col-md-4 col-sm-12">
+                            <div class="cart_totals float-md-right text-md-right">
+                                <h2>Cart Totals</h2>
+                                <br>
+                                <table class="float-md-right">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Subtotal</th>
+                                            <td><span class="amount">@Model.TotalPrice().ToString("C", culture)</span></td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Total</th>
+                                            <td>
+                                                <strong><span class="amount">@Model.TotalPrice().ToString("C", culture)</span></strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="wc-proceed-to-checkout">
+                                    <a asp-controller="Home" asp-action="Checkout">Thanh toán</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cart Totals End -->
+                    </div>
+                    <!-- Row End -->
+                </form>
+                <!-- Form End -->
+            </div>
+        </div>
+        <!-- Row End -->
+    </div>
+</div>

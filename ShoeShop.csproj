@@ -1,0 +1,261 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.21.0" />
+    <PackageReference Include="jQuery" Version="3.7.0" />
+    <PackageReference Include="jquery.datatables" Version="1.10.15" />
+    <PackageReference Include="MailKit" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="wwwroot\lib\bootstrap\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\lib\jquery-validation\" />
+    <Folder Include="wwwroot\lib\jquery-validation\dist\" />
+    <Folder Include="wwwroot\lib\jquery\" />
+    <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\css\app.css" />
+    <None Include="wwwroot\assets\img\1088x336.png" />
+    <None Include="wwwroot\assets\img\140x140.png" />
+    <None Include="wwwroot\assets\img\342x239.png" />
+    <None Include="wwwroot\assets\img\346x106.png" />
+    <None Include="wwwroot\assets\img\362x239.png" />
+    <None Include="wwwroot\assets\img\404-bg.png" />
+    <None Include="wwwroot\assets\img\529x161.png" />
+    <None Include="wwwroot\assets\img\avatar-150.png" />
+    <None Include="wwwroot\assets\img\avatar.png" />
+    <None Include="wwwroot\assets\img\avatar1.png" />
+    <None Include="wwwroot\assets\img\avatar2.png" />
+    <None Include="wwwroot\assets\img\avatar3.png" />
+    <None Include="wwwroot\assets\img\avatar4.png" />
+    <None Include="wwwroot\assets\img\avatar5.png" />
+    <None Include="wwwroot\assets\img\avatar6.png" />
+    <None Include="wwwroot\assets\img\bitbucket.png" />
+    <None Include="wwwroot\assets\img\docs\img1.png" />
+    <None Include="wwwroot\assets\img\docs\img2.png" />
+    <None Include="wwwroot\assets\img\docs\img3.png" />
+    <None Include="wwwroot\assets\img\dribbble.png" />
+    <None Include="wwwroot\assets\img\dropbox.png" />
+    <None Include="wwwroot\assets\img\gallery\img1.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img10.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img11.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img12.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img2.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img3.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img4.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img5.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img6.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img7.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img8.jpg" />
+    <None Include="wwwroot\assets\img\gallery\img9.jpg" />
+    <None Include="wwwroot\assets\img\github.png" />
+    <None Include="wwwroot\assets\img\logo-fav.png" />
+    <None Include="wwwroot\assets\img\logo-symbol.png" />
+    <None Include="wwwroot\assets\img\logo-white-xx.png" />
+    <None Include="wwwroot\assets\img\logo-white.png" />
+    <None Include="wwwroot\assets\img\logo-xx.png" />
+    <None Include="wwwroot\assets\img\logo.png" />
+    <None Include="wwwroot\assets\img\mail_chimp.png" />
+    <None Include="wwwroot\assets\img\slack.png" />
+    <None Include="wwwroot\assets\img\user-profile-display.png" />
+    <None Include="wwwroot\assets\js\app.js" />
+    <None Include="wwwroot\assets\lib\bootstrap-slider\bootstrap-slider.min.js" />
+    <None Include="wwwroot\assets\lib\bootstrap-slider\css\bootstrap-slider.min.css" />
+    <None Include="wwwroot\assets\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\assets\lib\bs-custom-file-input\bs-custom-file-input.js" />
+    <None Include="wwwroot\assets\lib\chartjs\Chart.min.js" />
+    <None Include="wwwroot\assets\lib\countup\countUp.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-bs4\css\dataTables.bootstrap4.css" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-bs4\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons\js\buttons.colVis.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons\js\buttons.flash.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons\js\buttons.html5.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons\js\buttons.print.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-buttons\js\dataTables.buttons.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net-responsive\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\datatables.net\js\jquery.dataTables.js" />
+    <None Include="wwwroot\assets\lib\datatables\jszip\jszip.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\pdfmake\pdfmake.min.js" />
+    <None Include="wwwroot\assets\lib\datatables\pdfmake\vfs_fonts.js" />
+    <None Include="wwwroot\assets\lib\datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <None Include="wwwroot\assets\lib\datetimepicker\js\bootstrap-datetimepicker.min.js" />
+    <None Include="wwwroot\assets\lib\dragula\dragula.min.css" />
+    <None Include="wwwroot\assets\lib\dragula\dragula.min.js" />
+    <None Include="wwwroot\assets\lib\dropzone\dropzone.css" />
+    <None Include="wwwroot\assets\lib\dropzone\dropzone.js" />
+    <None Include="wwwroot\assets\lib\fuelux\js\wizard.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\jquery.flot.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\jquery.flot.pie.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\jquery.flot.resize.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\jquery.flot.time.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\plugins\curvedLines.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\plugins\jquery.flot.orderBars.js" />
+    <None Include="wwwroot\assets\lib\jquery-flot\plugins\jquery.flot.tooltip.js" />
+    <None Include="wwwroot\assets\lib\jquery-ui\jquery-ui.min.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\addon\edit\matchbrackets.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\lib\codemirror.css" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\lib\codemirror.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\mode\css\css.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\mode\htmlmixed\htmlmixed.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\mode\xml\xml.js" />
+    <None Include="wwwroot\assets\lib\jquery.codemirror\theme\monokai.css" />
+    <None Include="wwwroot\assets\lib\jquery.fullcalendar\fullcalendar.min.css" />
+    <None Include="wwwroot\assets\lib\jquery.fullcalendar\fullcalendar.min.js" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\css\jquery.gritter.css" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\images\gritter-bg.png" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\images\gritter-light.png" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\images\gritter.png" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\images\ie-spacer.gif" />
+    <None Include="wwwroot\assets\lib\jquery.gritter\js\jquery.gritter.js" />
+    <None Include="wwwroot\assets\lib\jquery.magnific-popup\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\assets\lib\jquery.magnific-popup\magnific-popup.css" />
+    <None Include="wwwroot\assets\lib\jquery.maskedinput\jquery.maskedinput.js" />
+    <None Include="wwwroot\assets\lib\jquery.nestable\jquery.nestable.js" />
+    <None Include="wwwroot\assets\lib\jquery.niftymodals\js\jquery.niftymodals.js" />
+    <None Include="wwwroot\assets\lib\jquery.sparkline\jquery.sparkline.min.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\jquery-jvectormap-1.2.2.css" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\jquery-jvectormap-1.2.2.min.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-au-mill-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-ca-lcc-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-fr-merc-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-in-mill-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-map.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-uk-mill-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-us-merc-en.js" />
+    <None Include="wwwroot\assets\lib\jquery.vectormap\maps\jquery-jvectormap-world-mill-en.js" />
+    <None Include="wwwroot\assets\lib\jquery\jquery.min.js" />
+    <None Include="wwwroot\assets\lib\jqvmap\jquery.vmap.min.js" />
+    <None Include="wwwroot\assets\lib\jqvmap\jqvmap.min.css" />
+    <None Include="wwwroot\assets\lib\jqvmap\maps\jquery.vmap.world.js" />
+    <None Include="wwwroot\assets\lib\masonry-layout\masonry.pkgd.min.js" />
+    <None Include="wwwroot\assets\lib\material-design-icons\css\material-design-iconic-font.min.css" />
+    <None Include="wwwroot\assets\lib\material-design-icons\fonts\Material-Design-Iconic-Font.ttf" />
+    <None Include="wwwroot\assets\lib\material-design-icons\fonts\Material-Design-Iconic-Font.woff" />
+    <None Include="wwwroot\assets\lib\material-design-icons\fonts\Material-Design-Iconic-Font.woff2" />
+    <None Include="wwwroot\assets\lib\moment.js\min\moment.min.js" />
+    <None Include="wwwroot\assets\lib\morrisjs\morris.css" />
+    <None Include="wwwroot\assets\lib\morrisjs\morris.min.js" />
+    <None Include="wwwroot\assets\lib\mprogress\css\mprogress.min.css" />
+    <None Include="wwwroot\assets\lib\mprogress\js\mprogress.min.js" />
+    <None Include="wwwroot\assets\lib\multiselect\css\multi-select.css" />
+    <None Include="wwwroot\assets\lib\multiselect\img\switch.png" />
+    <None Include="wwwroot\assets\lib\multiselect\js\jquery.multi-select.js" />
+    <None Include="wwwroot\assets\lib\parsley\parsley.min.js" />
+    <None Include="wwwroot\assets\lib\perfect-scrollbar\css\perfect-scrollbar.css" />
+    <None Include="wwwroot\assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js" />
+    <None Include="wwwroot\assets\lib\prettify\prettify.js" />
+    <None Include="wwwroot\assets\lib\quicksearch\jquery.quicksearch.min.js" />
+    <None Include="wwwroot\assets\lib\raphael\raphael.min.js" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Black.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BlackItalic.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Bold.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-BoldItalic.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Light.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-LightItalic.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Medium.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-MediumItalic.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Regular.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-RegularItalic.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-Thin.woff2" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic-1.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic.eot" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic.svg" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic.ttf" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic.woff" />
+    <None Include="wwwroot\assets\lib\roboto\Roboto-ThinItalic.woff2" />
+    <None Include="wwwroot\assets\lib\select2\css\select2.min.css" />
+    <None Include="wwwroot\assets\lib\select2\js\select2.full.min.js" />
+    <None Include="wwwroot\assets\lib\select2\js\select2.min.js" />
+    <None Include="wwwroot\assets\lib\summernote\font\summernote-1.eot" />
+    <None Include="wwwroot\assets\lib\summernote\font\summernote.eot" />
+    <None Include="wwwroot\assets\lib\summernote\font\summernote.ttf" />
+    <None Include="wwwroot\assets\lib\summernote\font\summernote.woff" />
+    <None Include="wwwroot\assets\lib\summernote\summernote-bs4.css" />
+    <None Include="wwwroot\assets\lib\summernote\summernote-bs4.min.js" />
+    <None Include="wwwroot\assets\lib\summernote\summernote-ext-beagle.js" />
+    <None Include="wwwroot\assets\lib\sweetalert2\sweetalert2.min.css" />
+    <None Include="wwwroot\assets\lib\sweetalert2\sweetalert2.min.js" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,203 @@
+﻿@using System.Globalization;
+@model Product
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+}
+<div class="wrapper">
+    <!-- Banner Popup Start -->
+    <div class="breadcrumb-area mt-30">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="d-flex align-items-center">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="Product">Sản phẩm</a></li>
+                    <li class="active"><a>Chi tiết sản phẩm</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Product Thumbnail Start -->
+    <div class="main-product-thumbnail ptb-100 ptb-sm-60">
+        <div class="container">
+            <div class="thumb-bg">
+                <div class="row">
+                    <!-- Main Thumbnail Image Start -->
+                    <div class="col-lg-5 mb-all-40">
+                        <!-- Thumbnail Large Image start -->
+                        <div class="tab-content">
+                            <div id="thumb1" class="tab-pane fade show active">
+                                <a data-fancybox="images" >
+                                    <img src="@Model.Image.First"
+                                         alt="product-view">
+                                </a>
+                            </div>
+                            <div id="thumb2"  class="tab-pane fade">
+                                <a data-fancybox="images" >
+                                    <img src="@Model.Image.Second"
+                                         alt="product-view">
+                                </a>
+                            </div>
+                            <div id="thumb3" style="width: 20%" class="tab-pane fade">
+                                <a data-fancybox="images">
+                                    <img src="@Model.Image.Third"
+                                         alt="product-view">
+                                </a>
+                            </div>
+
+                        </div>
+                        <!-- Thumbnail Large Image End -->
+                        <!-- Thumbnail Image End -->
+                        <div class="product-thumbnail mt-15">
+                            <div  class="thumb-menu owl-carousel nav tabs-area" role="tablist">
+                                <a style="width: 20%;margin-right:10px" class="active" data-toggle="tab" href="#thumb1">
+                                    <img src="@Model.Image.First"
+                                         alt="product-thumbnail">
+                                </a>
+                                <a style="width: 20% ;margin-right:10px" data-toggle="tab" href="#thumb2">
+                                    <img src="@Model.Image.Second"
+                                         alt="product-thumbnail">
+                                </a> <a style="width: 20%" data-toggle="tab" href="#thumb3">
+                                    <img src="@Model.Image.Third"
+                                         alt="product-thumbnail">
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- Thumbnail image end -->
+                    </div>
+                    <!-- Main Thumbnail Image End -->
+                    <!-- Thumbnail Description Start -->
+                    <div class="col-lg-7">
+                        <div class="thubnail-desc fix">
+                            <h3 class="product-header">@Model.Title</h3>
+                            <div class="rating-summary fix mtb-10">
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <!-- <div class="rating-feedback">
+                                    <a href="#">(1 review)</a>
+                                    <a href="#">add to your review</a>
+                                </div> -->
+                            </div>
+
+                            <div class="pro-price mtb-30">
+                                <p class="d-flex align-items-center">
+                                    <span class="price">
+                                       @Model.Price.ToString("C",culture)
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="color clearfix mb-20">
+                                <label>Mô tả</label>
+                                <p>@Model.Description</p>
+                                <!-- <ul class="color-list">
+                                    <li>
+                                        <a class="orange active" href="#">Lát nền</a>
+                                    </li>
+                                    <li>
+                                        <a class="paste" href="#">Ốp tường</a>
+                                    </li>
+                                </ul> -->
+                            </div>
+                            @if (Model.Status == ShoeShop.Models.Enum.ProductStatus.Active)
+                            {
+                                
+                            
+                            <div class="box-quantity d-flex hot-product2">
+
+                                    <div class="pro-actions">
+                                        <div class="actions-primary">
+                                            <c:url value="/addCart?productID=${product.productID}"
+                                                   var="addCart" />
+                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" title="" data-original-title="Thêm vào giỏ">
+                                                + Thêm vào
+                                                giỏ
+                                            </a>
+                                        </div>
+                                        <div class="actions-primary">
+                                          
+                                            <a asp-controller="Cart" asp-action="BuyNow" asp-route-id="@Model.Id" title="Mua ngay" data-original-title="Mua ngay">Mua ngay</a>
+                                        </div>
+                                        <div class="actions-secondary">
+                                            <!-- <a href="compare.html" title="" data-original-title="Compare"><i class="lnr lnr-sync"></i> <span>Thêm so sánh</span></a> -->
+                                            <!-- <a href="wishlist.html" title="" data-original-title="WishList"><i class="lnr lnr-heart"></i> <span>Thêm vào danh sách yêu thích</span></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro-ref mt-20">
+                                    <p>
+                                        <span class="in-stock"><i class="ion-checkmark-round"></i>Còn @Model.Quantity</span>
+                                    </p>
+                                </div>
+                            }else
+
+                            {
+                                <div class="pro-ref mt-20">
+                                    <p>
+                                        <span class="in-stock"><i class="ion-close-round" style="color: red"></i>Hết hàng</span>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- Thumbnail Description End -->
+                </div>
+                <!-- Row End -->
+            </div>
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Product Thumbnail End -->
+    <!-- Product Thumbnail Description Start -->
+    <div class="thumnail-desc pb-100 pb-sm-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="main-thumb-desc nav tabs-area" role="tablist">
+                        <li>
+                            <a class="active" data-toggle="tab" href="#comment">Bình luận</a>
+                        </li>
+                    </ul>
+                    <!-- Product Thumbnail Tab Content Start -->
+                    <div class="tab-content thumb-content border-default">
+                        <div id="comment" class="tab-pane fade show active">
+                            <!-- Reviews Start -->
+                            <div class="fb-comments"
+                                 data-href="https://localhost:7252/Product/Detail/@Model.Id"
+                                 data-width="1100" data-numposts="5"></div>
+                            <!-- Reviews End -->
+                        </div>
+
+                    </div>
+                    <!-- Product Thumbnail Tab Content End -->
+                </div>
+            </div>
+            <!-- Row End -->
+        </div>
+        <!-- Container End -->
+    </div>
+    <!-- Product Thumbnail Description End -->
+    <!-- Realted Products Start Here -->
+    <!-- Realated Products End Here -->
+    <!-- Support Area Start Here -->
+    <!-- Footer Area End Here -->
+    <!-- Quick View Content Start -->
+    <!-- Quick View Content End -->
+</div>
+<!-- Main Wrapper End Here -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=1350248292455948&autoLogAppEvents=1"
+        nonce="uY6kzAGR"></script>

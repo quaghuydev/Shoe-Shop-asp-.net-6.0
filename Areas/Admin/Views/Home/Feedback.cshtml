@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using ShoeShop.Dto;
+@model ContactDto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post" action="/Admin/Home/Feedback/">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Email">Email: </label>
+        <input asp-for="Email" class="form-control" placeholder="Nhập email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Subject">Chủ đề</label>
+        <input asp-for="Subject" class="form-control" placeholder="Nhập chủ đề">
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>  <div class="form-group">
+        <label asp-for="Content">Nội dung</label>
+        <input asp-for="Content" class="form-control" placeholder="Nhập nội dung">
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Feedback">Phản hồi</label>
+        <textarea class="form-control"  rows="3" asp-for="Feedback"></textarea>
+        <span asp-validation-for="Feedback" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Gửi</button>
+    <a href="/Admin/Home/Contact" class="btn btn-secondary">Hủy</a>
+</form>

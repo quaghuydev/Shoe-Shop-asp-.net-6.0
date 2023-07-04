@@ -1,0 +1,106 @@
+﻿@using System.Globalization;
+@using Microsoft.CodeAnalysis.Differencing;
+@model IEnumerable<OrderDetail>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    CultureInfo culture = new CultureInfo("vi-VN"); // Use the Vietnamese culture
+    culture.NumberFormat.CurrencySymbol = "VNĐ";
+    culture.NumberFormat.CurrencyDecimalDigits = 0; // Số thập phân của tiền tệ (0 tức là không có phần thập phân)
+    culture.NumberFormat.CurrencyGroupSeparator = ",";
+    var order = ViewBag.Order as Order;
+}
+<style>
+    
+    #content{
+        margin: 30px;
+        font-size:15px;
+    }
+    .tool li {
+        margin-left:20px;
+        cursor:pointer;
+    }
+    .info{
+        color: blue;
+        font-size: 13px
+
+    }
+   
+}
+</style>
+<div class="btn-group dropend no-print">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Công cụ
+    </button>
+    <ul  class="dropdown-menu tool">
+        <li onclick="printOrder()"><a>In</a></li>
+        <li onclick="saveAsPDF()"><a>Lưu file PDF</a></li>
+    </ul>
+</div>
+<div id="content">
+<div >
+    <h5><a style="color: blue;">Mã đơn hàng: </a> @order.Id</h5>
+    <h5><a style="color: blue">Họ và tên:</a> @order.Fullname</h5>
+    <h5><a style="color: blue">Địa chỉ:</a> @order.Address.ToString()</h5>
+    <h5><a style="color: blue">Số điện thoại:</a> @order.PhoneNumber</h5>
+    <h5><a style="color: blue">Ngày đặt hàng:</a> @order.CreateDate</h5>
+</div>
+<br />
+<br />
+<table class="table table-striped table-bordered table-hover" style="width:50%">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá tiền</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Product.Title</td>
+                <td>@p.Quantity</td>
+                <td>@p.TotalPrice.ToString("C",culture)</td>
+            </tr>
+        }
+    </tbody>
+   
+</table>
+<br />
+<div class="info-price">
+    <div><h5><a style="color: blue">Phí vận chuyển:</a> 20,000 VNĐ</h5></div>
+        <div><h5><a style="color: blue">Tổng tiền:</a> @((order.TotalPrice+20000).ToString("C",culture))</h5></div>
+</div>
+</div>
+<script>
+    function printOrder() {
+        var element = document.getElementById('content'); // Chọn nội dung bạn muốn in
+        html2canvas(element).then(function (canvas) {
+            var imgData = canvas.toDataURL('image/png');
+            var doc = new jsPDF();
+            doc.addImage(imgData, 'PNG', 10, 10);
+            doc.autoPrint(); // Tự động in khi tài liệu PDF được mở
+            window.open(doc.output('bloburl'), '_blank'); // Mở tài liệu PDF trong một cửa sổ mới
+        });
+    }
+</script>
+<script>
+    function saveAsPDF() {
+        var element = document.getElementById('content'); // Chọn nội dung bạn muốn in
+        html2canvas(element).then(function (canvas) {
+            var imgData = canvas.toDataURL('image/png');
+            var doc = new jsPDF();
+            doc.addImage(imgData, 'PNG', 10, 10);
+            doc.save('order.pdf');
+        });
+    }
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
